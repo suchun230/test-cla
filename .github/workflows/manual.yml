@@ -21,7 +21,8 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const issues = await github.paginate(github.issues.listForRepo, {
-              repo: 'test-cla'
+              owner: "suchun230",
+              repo: 'test-cla',
               state: 'open'
             })
 
