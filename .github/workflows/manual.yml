@@ -30,7 +30,7 @@ jobs:
               await github.issues.createComment({
                 issue_number: issue.number,
                 owner: "suchun230",
-                repo: "suchun230",
+                repo: "test-cla",
                 body: 'Hi, we are setting up contribution license model'
               })
             }
