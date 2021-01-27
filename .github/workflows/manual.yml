@@ -6,21 +6,31 @@ on:
     inputs:
       name:
         # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
+        description: 'issue number'
         # Default value if no value is explicitly provided
-        default: 'World'
+        default: 1
         # Input has to be provided for the workflow to run
         required: true
 
 jobs:
-  example:
-    name: sample comment
+  comment issue:
     runs-on: ubuntu-latest
     steps:
-      - name: comment PR
-        uses: unsplash/comment-on-pr@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/github-script@v3
         with:
-          msg: "Hi, we are setting up the contribution license model so there will be several days delay on merging your patch. Appreciate for you understanding."
-          check_for_duplicate_msg: false  # OPTIONAL 
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const creator = context.payload.sender.login
+            const opts = github.issues.listForRepo.endpoint.merge({
+              state: 'open'
+            })
+            const issues = await github.paginate(opts)
+
+            for (const issue of issues) {
+              await github.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: 'Welcome, new contributor!'
+              }
+            })
