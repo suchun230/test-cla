@@ -20,17 +20,16 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            const creator = context.payload.sender.login
-            const opts = github.issues.listForRepo.endpoint.merge({
+            const issues = await github.paginate(github.issues.listForRepo, {
+              repo: 'test-cla'
               state: 'open'
             })
-            const issues = await github.paginate(opts)
 
             for (const issue of issues) {
               await github.issues.createComment({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                body: 'Welcome, new contributor!'
+                body: 'Hi, we are setting up contribution license model'
               })
             }
