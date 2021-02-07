@@ -31,7 +31,7 @@ jobs:
       - name: Check code style
         # Check only if there are differences in the source code (Run a lint on all files if there are changes to yarn.lock or .eslintrc)
         run: |
-          IFS=', ' read -r -a array <<< env.GIT_DIFF
+          IFS=', ' read -r -a array <<< $env.GIT_DIFF
           for file in "${array[@]}"
           do
               echo "$file"
