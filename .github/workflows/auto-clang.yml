@@ -34,7 +34,7 @@ jobs:
           IFS=', ' read -r -a array <<< $GIT_DIFF
           for file in "${array[@]}"
           do
-              if [ -f "$file" ]
+              if [ -f $file ]
               then
                 echo "$file"
                 clang-format -i $file
