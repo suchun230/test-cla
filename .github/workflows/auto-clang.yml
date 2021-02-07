@@ -35,7 +35,9 @@ jobs:
           for file in "${array[@]}"
           do
               echo "$file"
-              clang-format -i $file
+              if [ -f "$file" ]
+                clang-format -i $file
+              fi
           done
         if: env.GIT_DIFF
       - uses: EndBug/add-and-commit@v4
