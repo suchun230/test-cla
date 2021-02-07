@@ -36,6 +36,7 @@ jobs:
           do
               echo "$file"
               if [ -f "$file" ]
+              then
                 clang-format -i $file
               fi
           done
