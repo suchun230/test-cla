@@ -34,7 +34,7 @@ jobs:
           IFS=', ' read -r -a array <<< ${{ env.GIT_DIFF}}
           for file in "${array[@]}"
           do
-              if [ -f $file ]
+              if [[ -f $file  && ! "$file" =~ (.clang-format|.clang-ignore) ]]
               then
                 echo "$file"
                 clang-format -i $file
