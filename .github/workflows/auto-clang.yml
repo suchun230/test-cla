@@ -19,7 +19,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with: 
-          ref: ${{ github.head_ref }}
+          persist-credentials: false
       - uses: technote-space/get-diff-action@v4
       - name: Install Package dependencies
         run: sudo apt-get install clang-format-10
@@ -29,7 +29,7 @@ jobs:
         run: |
           for file in ${{ env.GIT_DIFF}}
           do
-              if [[ -f $file  && ! "$file" =~ (.clang-format|.clang-ignore) ]]
+              if [[ -f $file  && ! "$file" =~ (.clang-format|.clang-ignore|.github) ]]
               then
                 echo "$file"
                 clang-format -i $file
@@ -40,5 +40,4 @@ jobs:
         with:
           commit_message: 'Committing clang-format changes'
           commit_options: '--signoff'
-          branch: ${{ github.head_ref }}
 
