@@ -22,7 +22,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.head_ref }}
           persist-credentials: false
           fetch-depth: 0
       - uses: technote-space/get-diff-action@v4
