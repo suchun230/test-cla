@@ -48,3 +48,4 @@ jobs:
           commit_message: 'Committing clang-format changes'
           commit_options: '--signoff'
           ref: ${{ github.head_ref }}
+
