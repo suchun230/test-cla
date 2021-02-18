@@ -1,0 +1,11 @@
+CMSIS/(.*)
+tools/(.*)
+pin_mux.c
+pin_mux.h
+fsl_common.h
+peripherals.c
+peripherals.h
+clock_config.c
+clock_config.h
+dcd.c
+dcd.h
