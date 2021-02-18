@@ -25,6 +25,8 @@ jobs:
           fetch-depth: 0
           ref: ${{github.event.pull_request.head.ref}}
           repository: ${{github.event.pull_request.head.repo.full_name}}
+        env:
+           GITHUB_TOKEN: ${{ secrets.BELL }}
       - uses: technote-space/get-diff-action@v4
       - name: Install Package dependencies
         run: sudo apt-get install clang-format-10
