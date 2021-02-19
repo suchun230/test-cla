@@ -5,7 +5,7 @@ name: CI
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  pull_request:
+  pull_request_target:
   push:
     branches:
       - "main"
@@ -23,8 +23,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          ref: ${{github.event.pull_request.head.ref}}
-          token: 'c703e152a0c7471d704975a62f5c5d9000397908'
+          #ref: ${{github.event.pull_request.head.ref}}
+          #token: 'c703e152a0c7471d704975a62f5c5d9000397908'
       - uses: technote-space/get-diff-action@v4
       - name: Install Package dependencies
         run: sudo apt-get install clang-format-10
