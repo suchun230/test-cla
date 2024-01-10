@@ -1,3 +1,8 @@
+int hello_func(char x)
+{
+    print("hello %s"%x);
+}
+
 int main()
 {
     int x = 1, y = 2;
